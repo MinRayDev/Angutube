@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import { AuthService } from '../../services/auth.service';
 
 @Component({
@@ -8,14 +8,13 @@ import { AuthService } from '../../services/auth.service';
   templateUrl: './profil.component.html',
   styleUrl: './profil.component.css'
 })
-export class ProfilComponent {
+export class ProfilComponent implements OnInit {
   username: string = '';
   email: string = '';
 
-  constructor(private authService: AuthService) { }
+  constructor(private readonly authService: AuthService) { }
 
   ngOnInit() {
-    console.log('Profil');
     const currentUser = this.authService.currentUserValue;
     if (currentUser) {
       this.username = currentUser.username;
