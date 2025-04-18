@@ -1,12 +1,11 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
-import {list} from 'postcss';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
-  private currentUserSubject: BehaviorSubject<any> = new BehaviorSubject<any>(JSON.parse(sessionStorage.getItem('currentUser') || 'null'));
+  private readonly currentUserSubject: BehaviorSubject<any> = new BehaviorSubject<any>(JSON.parse(sessionStorage.getItem('currentUser') ?? 'null'));
   public currentUser$: Observable<any> = this.currentUserSubject.asObservable();
 
   public get currentUserValue(): any {
@@ -28,7 +27,6 @@ export class AuthService {
         return user;
       }
     }
-    return;
   }
 
   logout() {

@@ -1,7 +1,7 @@
 @if (isLoggedIn) {
   <a
     class="mt-5 fixed bg-red-500 text-white px-4 py-2 rounded shadow-lg hover:bg-red-600 z-50 transition-all duration-300"
-    [ngStyle]="{ left: isSidebarOpen ? '270px' : '10px' }"
+    [ngStyle]="{ left: isSidebarOpen ? '300px' : '10px' }"
     (click)="toggleSidebar()"
   >
     @if (isSidebarOpen) {
@@ -19,15 +19,16 @@
     }
   </a>
   <div
-    class="sidebar fixed left-0 h-screen w-64 bg-gray-100 shadow-lg transform transition-transform duration-300 text-gray-600 z-40"
+    class="sidebar fixed left-0 top-20 h-screen w-64 bg-gray-100 shadow-lg transform transition-transform duration-300 text-gray-600 z-40 w-[275px]"
     [ngClass]="{ 'translate-x-0': isSidebarOpen, '-translate-x-full': !isSidebarOpen }"
   >
     <nav class="sidebar-items space-y-2 p-4 mt-0">
       <a routerLink="/profile" class="block px-4 py-2 hover:bg-gray-400 rounded">{{ user.username }}</a>
       <hr>
       <h2 class="block px-4 py-2 font-bold">Vidéos</h2>
-      <a href="#" class="block px-4 py-2 hover:bg-gray-400 rounded">Link 2</a>
-      <a href="#" class="block px-4 py-2 hover:bg-gray-400 rounded">Link 3</a>
+      @for (video of videos; track video.id) {
+        <a [routerLink]="['/videos', video.id]" class="block px-4 py-2 hover:bg-gray-400 rounded">{{ video.title.length > 20 ? (video.title | slice:0:20) + '...' : video.title }}</a>
+      }
     </nav>
   </div>
 }
