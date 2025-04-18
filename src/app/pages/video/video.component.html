@@ -1,11 +1,12 @@
-<div class="rounded-md bg-gray-100 m-5 p-4 max-w-7xl mx-auto">
-    <iframe
-      height="800"
-      src="https://www.youtube.com/embed/{{id}}" [title]="title"
-      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen
-    >
-    </iframe>
-  <div class="flex">
+<div class="rounded-md bg-gray-100 m-5 py-5 px-7 max-w-7xl mx-auto">
+  <iframe
+    height="700"
+    [src]="safeUrl" [title]="title"
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen
+    class="min-w-full max-w-full  rounded-md shadow-lg"
+  >
+  </iframe>
+  <div class="flex mt-5">
     <button class="bg-red-500 text-white px-4 py-2 rounded shadow-lg hover:bg-red-600 ml-auto" (click)="remove(id)">Retirer</button>
   </div>
 </div>
